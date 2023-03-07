@@ -1,0 +1,126 @@
+//DATA SET
+
+const characters =  [
+  {
+    name: 'Spongebob Squarepants',
+    species: 'sponge',
+    tagLine: 'I\'m ready!',
+    occupation: 'frycook'
+  },
+  {
+    name: 'Patrick Star',
+    species: 'starfish',
+    tagLine: 'Uh',
+    occupation: null
+  },
+  {
+    name: 'Sandy Cheeks',
+    species: 'squirrel',
+    tagLine: 'Howdy y\'all!',
+    occupation: 'scientist'
+  },
+  {
+    name: 'Eugene Krabs',
+    species: 'crab',
+    tagLine: 'Gimmie me money!',
+    occupation: 'restaurant owner'
+  },
+  {
+    name: 'Gary',
+    species: 'snail',
+    tagLine: 'meow',
+    occupation: null
+  },
+  {
+    name: 'Mrs. Puff',
+    species: 'puffer fish',
+    tagLine: 'Oh Spongebob, why?',
+    occupation: 'driving instructor'
+  },
+  {
+    name: 'Plankton',
+    species: 'plankton',
+    tagLine: 'I\'ll remember you all in therapy.',
+    occupation: 'restaurant owner'
+  }
+];
+
+const bikiniBottom = {
+  krustyKrab: {
+    employees: ['Spongebob Squarepants', 'Eugene Krabs'],
+    type: 'restaurant'
+  },
+  boatingSchool: {
+    employees: ['Mrs. Puff'],
+    type: 'school'
+  },
+  chumBucket: {
+    employees: ['Plankton'],
+    type: 'restaurant'
+  }
+};
+
+//PROMPT #1
+//Return an array of unemployed characters
+
+//ex: [
+  //   {
+  //   name: 'Patrick Star',
+  //   species: 'starfish',
+  //   tagLine: 'Uh',
+  //   occupation: null
+  // },
+  // {
+  //   name: 'Gary',
+  //   species: 'snail',
+  //   tagLine: 'meow',
+  //   occupation: null
+  // }
+//];
+
+//SOLUTION
+function unemployed() {
+  const jobless = characters.reduce((acc, character) => {
+    if(character.occupation === null) {
+      acc.push(character)
+    }
+    return acc
+  }, [])
+  return jobless
+}
+
+//PSEUDO-CODE (thought process/notes while solving)
+// I have an array of objects
+// I need to return an array of objects
+// The objects that I need to return have the occupation of null
+// Need to go through the array of objects and push the entire object with the null occupation into an array
+// Need to filter because it returns an array and I'm looking for an array
+
+
+
+//PROMPT #2
+//Return an array of taglines of characters that work at the Krusty Krab
+
+// ex: ['I\'m ready!', 'Gimmie me money!'];
+
+//SOLUTION
+function tagLine() {
+  let krustyKwotes = characters.reduce((quotes, character) => {
+    // console.log('ACC', quotes)
+    // console.log('CHAR', character)
+    if (character.occupation === 'restaurant owner' || character.occupation === 'frycook') {
+      quotes.push(character.tagLine)
+    }
+  return quotes;
+  }, [])
+  return krustyKwotes;
+}
+
+//PSEUDO-CODE (thought process/notes while solving)
+//I have an array of objects
+//I need to return an array of strings
+//First, I need to access each object
+//then, I need to iterate over each object to access said object
+//Second, I need to look at each object and assess each occupation type
+//Third, I need to only push the string into my new array from the above iteration^^^
+//Reduce is likely most straight-forward
