@@ -124,3 +124,58 @@ function tagLine() {
 //Second, I need to look at each object and assess each occupation type
 //Third, I need to only push the string into my new array from the above iteration^^^
 //Reduce is likely most straight-forward
+
+
+
+//PROMPT #3
+//Return an object where each property is the place's name and the value is an array of the species of characters that work there
+
+// ex: {
+//   krustyKrab: ['sponge', 'crab'],
+//   boatingSchool: ['puffer fish'],
+//   chumBucket: ['plankton']
+// };
+
+//SOLUTION
+function placements() {
+  let places = Object.keys(bikiniBottom);
+  
+  let krustyEmployeeSpecies = characters.reduce((acc, species) => {
+    if(species.name === bikiniBottom.krustyKrab.employees[0] || species.name === bikiniBottom.krustyKrab.employees[1]) {
+      acc.push(species.species)
+    }
+    return acc
+  }, []);
+
+  let boatingEmployeeSpecies = characters.reduce((acc, species) => {
+    if(species.name === bikiniBottom.boatingSchool.employees[0]) {
+      acc.push(species.species)
+    }
+    return acc
+  }, []);
+
+  let chumEmployeeSpecies = characters.reduce((acc, species) => {
+    if(species.name === bikiniBottom.chumBucket.employees[0]) {
+      acc.push(species.species)
+    }
+    return acc
+  }, []);
+  
+  let workerObj = {
+    [places[0]]: krustyEmployeeSpecies,
+    [places[1]]: boatingEmployeeSpecies,
+    [places[2]]: chumEmployeeSpecies
+  }
+   return workerObj
+};
+
+//PSEUDO-CODE (thought process/notes while solving)
+//I have an two sets of data
+//I need an object where the key is a place and the value is an array of the types of animals that live there.
+//the places of employment are in bikiniBottom dataset
+//the species types are in character
+//I may need two functions, but object.keys appear to give me properties I need
+//Conditional statements will need to compare the employee name to match,
+//then by the result, I will need to create an array for the coinciding species
+//first, a function which creates an object between worker-to-place
+//use this object to compare name to species in the next function
